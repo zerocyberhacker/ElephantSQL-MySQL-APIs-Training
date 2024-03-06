@@ -3,16 +3,16 @@ import { AppService } from './app.service';
 import { SearchUserByEmailDto } from './dto/search.user.by.email.dto';
 import { LoginUserDto } from './dto/login.user.dto';
 
-@Controller('app')
+@Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
   start() {
-    return 'Wellcome';
+    return { message: 'Wellcome' };
   }
 
-  @Get()
+  @Get('health')
   health() {
     return 'OK';
   }
