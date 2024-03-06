@@ -7,7 +7,12 @@ import { LoginUserDto } from './dto/login.user.dto';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Post('search-user-email')
+  @Get()
+  start() {
+    return 'Wellcome';
+  }
+
+  @Get()
   health() {
     return 'OK';
   }
