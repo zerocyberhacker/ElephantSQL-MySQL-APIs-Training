@@ -24,7 +24,6 @@ export class AppController {
 
   @Post('login')
   login(@Body() loginUserDto: LoginUserDto): Promise<any> {
-    console.log();
     return this.appService.login(loginUserDto);
   }
 }

@@ -1,0 +1,57 @@
+CREATE TABLE Users
+(
+ userid SERIAL PRIMARY KEY , 
+ name VARCHAR(25),
+ email VARCHAR(25) NOT NULL,
+ password VARCHAR(25) NOT NULL
+)
+
+INSERT INTO Users (name, email, password) VALUES
+  ('John Doe', 'johndoe@example.com', 'password123'),
+  ('Jane Smith', 'janesmith@example.com', 'pass456');
+
+INSERT INTO Users (name, email, password) VALUES
+  ('Kris Ho', 'kris.ho@google.com', 'P@ssw0rd!');
+
+CREATE TABLE Posts (
+  id SERIAL PRIMARY KEY ,
+  title VARCHAR(255),
+  content TEXT,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(userid)
+);
+
+INSERT INTO posts (title, content, user_id) VALUES
+  ('Post 1', 'Content of post 1', 1),
+  ('Post 2', 'Content of post 2', 1),
+  ('Post 3', 'Content of post 3', 2);
+
+SELECT p.title, p.content, u.name,u.userid,u.email
+FROM posts p
+JOIN users u ON p.user_id = u.userid
+WHERE u.userid = 1;
+
+ALTER TABLE Posts ADD xss TEXT
+ALTER TABLE Posts ADD sqli TEXT
+ALTER TABLE Posts ADD csrf TEXT
+ALTER TABLE Posts ADD ssrf TEXT
+ALTER TABLE Posts ADD rce TEXT
+ALTER TABLE Posts ADD fiv TEXT
+ALTER TABLE Posts ADD ui TEXT
+ALTER TABLE Posts ADD idor TEXT
+
+Cross-Site Scripting (XSS): XSS occurs when an attacker injects malicious scripts into a web application, which are then executed by the victim's browser. This vulnerability allows the attacker to steal sensitive information, manipulate web content, or perform other malicious actions.
+
+SQL Injection: SQL injection (sqli) happens when an attacker injects malicious SQL code into a web application's database query. This can lead to unauthorized access, data disclosure, data manipulation, or even complete database compromise.
+
+Cross-Site Request Forgery (CSRF): CSRF involves tricking a victim into performing unintended actions on a web application in which they're authenticated. This vulnerability allows an attacker to perform actions on behalf of the victim without their knowledge or consent.
+
+Server-Side Request Forgery (SSRF): SSRF occurs when an attacker can make a server send out arbitrary requests to other internal or external systems. This vulnerability can be used to bypass firewalls, access restricted resources, or perform attacks on internal systems.
+
+Remote Code Execution (RCE): RCE allows an attacker to execute arbitrary code on a target server or application. This vulnerability can lead to full control over the compromised system and can have severe consequences if exploited.
+
+File Inclusion Vulnerabilities (FIV): File inclusion vulnerabilities occur when an application allows the inclusion of arbitrary files from the server. This can enable an attacker to read sensitive files, execute malicious code, or gain unauthorized access.
+
+Unvalidated Input (UI): Failure to properly validate user input can lead to various vulnerabilities, such as buffer overflows, command injection, or insecure deserialization.
+
+Insecure Direct Object References (IDOR): IDOR happens when an application exposes internal identifiers or references that can be manipulated by an attacker to access unauthorized resources or perform unauthorized actions.
