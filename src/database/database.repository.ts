@@ -37,4 +37,21 @@ export class DatabaseRepository {
       await client.end();
     }
   }
+
+  async createUser(name: string, email: string, password: string) {
+    const conString = configApp.database.elephantsql.url;
+    const client = new Client(conString);
+    try {
+      await client.connect();
+      const result: QueryResult<any> = await client.query(
+        `INSERT INTO Users (name, email, password) VALUES (${name}, ${email}, ${password})`,
+      );
+      console.log(result.rows);
+      return result.rows;
+    } catch (err) {
+      console.error('error running query', err);
+    } finally {
+      await client.end();
+    }
+  }
 }
