@@ -9,7 +9,11 @@ export class AppController {
 
   @Get()
   start() {
-    return { message: 'Wellcome' };
+    return {
+      api_name: 'BSc (Hons) Cyber Security-Project-APIs (Final Year Project)',
+      api_college: 'University Of West London',
+      api_status: new Date(),
+    };
   }
 
   @Get('health')
